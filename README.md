@@ -30,8 +30,8 @@ Para descargar las dependencias y compilar el proyecto, sigue los siguientes pas
 ### 1. Clonar el repositorio:
 
 ```bash
-git clone https://github.com/E1R0N/proyecto-api-karate.git
-cd proyecto-api-karate
+git clone https://github.com/E1R0N/Karate-Demoblaze.git
+cd Karate-Demoblaze
 ```
 ### 2. Ejecutar el archivo build.gradle:
 El archivo build.gradle contiene la configuración de las dependencias y tareas necesarias para ejecutar las pruebas.
