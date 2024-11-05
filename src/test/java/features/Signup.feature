@@ -5,10 +5,11 @@ Feature: Signup tests for Demoblaze API
 
   Scenario: Crear un nuevo usuario en signup
     Given path '/signup'
-    And request { username: '1725304955', password: "password123" }
+    And request { username: 'New1725304928', password: "password123" }
     When method POST
     Then status 200
     * def response = karate.typeOf(response)
+    * print response
     And match response == 'string'
 
   Scenario: Intentar crear un usuario ya existente
