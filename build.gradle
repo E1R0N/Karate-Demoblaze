@@ -1,0 +1,60 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group = "org.karate"
+version = "1.0-SNAPSHOT"
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
+    implementation group: 'com.google.guava', name: 'guava', version: '28.2-jre'
+    implementation group: 'org.noggit', name: 'noggit', version: '0.8'
+
+    // Karate framework para pruebas REST
+    testImplementation 'com.intuit.karate:karate-junit5:1.2.0'
+    testImplementation 'com.intuit.karate:karate-core:1.2.0'
+
+    // Dependencias de Cucumber
+    testImplementation 'io.cucumber:cucumber-java:7.13.0'
+    testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.13.0'
+    testImplementation 'net.masterthought:cucumber-reporting:5.3.1'
+
+    // JUnit 5 para ejecutar las pruebas
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+
+    // Otros posibles complementos
+    testImplementation 'org.apache.commons:commons-lang3:3.12.0'
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDirs = ['src/test/resources', 'src/test/java'] // define `src/test/resources` and `src/test/java` as resource folders
+            exclude '**/*.java' // excluye todos los archivos .java de los recursos
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+
+    // Configuración para mostrar los resultados de las pruebas en consola
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+task cucumberTest(type: Test) {
+    useJUnit()
+    systemProperty 'cucumber.options', '--tags @smoke'
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
